@@ -1,7 +1,7 @@
 # CLAUDE.md — Task Management API
 
 ## Стек
-Python 3.12 · FastAPI · PostgreSQL · SQLAlchemy 2.0 (async) · Alembic · Docker · `uv` (пакети) · `pytest` (тести) · `ruff` (лінт/формат) · `pyright` (типізація)
+Python 3.12 · FastAPI · PostgreSQL · SQLAlchemy 2.0 (async) · Alembic · Docker · `uv` (пакети) · `pytest` (тести) · `ruff` (лінт/формат) · `pyright` (типізація) · `import-linter` (перевірка шарів)
 
 ## Архітектура: Clean Architecture
 
@@ -15,7 +15,9 @@ infrastructure ─┼──▶ application ──▶ domain
 - **infrastructure/** — реалізації портів: SQLAlchemy-репозиторії, зовнішні сервіси, конфігурація БД. Залежить від `application` + `domain`.
 - **presentation/** — FastAPI роутери, схеми запиту/відповіді (Pydantic), DI-обв'язка. Залежить від `application` + `domain`.
 
-**Правило:** стрілки залежностей йдуть тільки всередину (до `domain`). Зовнішній шар ніколи не імпортується внутрішнім. `domain` та `application` нічого не знають про FastAPI, SQLAlchemy чи PostgreSQL.
+**Правило:** стрілки залежностей йдуть тільки всередину (до `domain`). Зовнішній шар ніколи не імпортується внутрішнім. `domain` та `application` нічого не знають про FastAPI, SQLAlchemy чи PostgreSQL. Виняток: `presentation` може напряму імпортувати `infrastructure` для DI-обв'язки (composition root), але не навпаки — `infrastructure` ніколи не імпортує `presentation`.
+
+Це правило перевіряється автоматично (`import-linter`, контракти в `pyproject.toml`), а не лише на словах — `make lint` впаде, якщо його порушити.
 
 ## Конвенції
 - Іменування: `snake_case` для файлів/функцій, `PascalCase` для класів.
@@ -30,7 +32,7 @@ infrastructure ─┼──▶ application ──▶ domain
 make dev       # підняти API + PostgreSQL через docker-compose
 make test      # запустити pytest
 make migrate   # застосувати alembic-міграції
-make lint      # ruff check + pyright
+make lint     # ruff check + pyright + import-linter (шари)
 make format    # ruff format
 ```
 

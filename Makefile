@@ -12,6 +12,7 @@ migrate:
 lint:
 	uv run ruff check .
 	uv run pyright
+	uv run lint-imports
 
 format:
 	uv run ruff format .

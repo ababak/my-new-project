@@ -32,7 +32,9 @@
 Практично це означає:
 - `domain` не імпортує нічого з `application`, `infrastructure`, `presentation`.
 - `application` імпортує лише `domain` — і визначає порти (абстрактні класи/`Protocol`) для того, що йому потрібно ззовні (наприклад, збереження даних).
-- `infrastructure` реалізує ці порти, імпортуючи `application` та `domain`, але `application` ніколи не імпортує `infrastructure` напряму (інверсія залежностей — DIP).
-- `presentation` збирає все разом через dependency injection: викликає use cases з `application`, підставляючи конкретні реалізації з `infrastructure`.
+- `infrastructure` реалізує ці порти, імпортуючи `application` та `domain`, але `application` ніколи не імпортує `infrastructure` напряму (інверсія залежностей — DIP). `infrastructure` також ніколи не імпортує `presentation`.
+- `presentation` збирає все разом через dependency injection: викликає use cases з `application`, підставляючи конкретні реалізації з `infrastructure` (тому `presentation` єдиний, кому дозволено імпортувати `infrastructure` напряму).
+
+Це не лише угода — правило зафіксоване як `layers`/`forbidden`-контракти `import-linter` у `pyproject.toml` і перевіряється командою `make lint`.
 
 Це дозволяє тестувати `domain` та `application` без БД чи HTTP-фреймворка, і замінювати `infrastructure` (напр. іншу СУБД) без зміни бізнес-логіки.
