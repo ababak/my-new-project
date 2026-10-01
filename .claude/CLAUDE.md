@@ -1,1 +1,1 @@
-Після кожного коміту в feature-1/ або feature-2/ допиши рядок у LOG.md з timestamp та коротким описом
+Після кожного коміту на гілці `feature-*` (гілку визначай через `git branch --show-current`; на `main`, у detached HEAD і для merge-комітів не логувати) допиши рядок у LOG.md у форматі `timestamp short-hash branch: короткий опис`. Лише додавай рядки в кінець, наявні не змінюй.
