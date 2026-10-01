@@ -46,6 +46,10 @@ class TaskStatusUpdate(BaseModel):
         return ChangeTaskStatusInput(task_id=task_id, status=self.status)
 
 
+class ErrorResponse(BaseModel):
+    detail: str
+
+
 class TaskResponse(BaseModel):
     id: UUID
     title: str

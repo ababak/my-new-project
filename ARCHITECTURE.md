@@ -21,7 +21,7 @@
 ```
 
 - **domain** — серце системи: сутності (`Task`, `TaskStatus`) та бізнес-правила. Чистий Python, без сторонніх залежностей.
-- **application** — сценарії використання (use cases: `CreateTask`, `CompleteTask`...) та порти — абстрактні інтерфейси (`TaskRepository`), які визначають *що* потрібно шару, не *як* це реалізовано.
+- **application** — сценарії використання (use cases: `CreateTask`, `GetTask`, `ListTasks`, `UpdateTask`, `ChangeTaskStatus`, `DeleteTask`) та порти — абстрактні інтерфейси (`TaskRepository`), які визначають *що* потрібно шару, не *як* це реалізовано.
 - **infrastructure** — конкретні реалізації портів: SQLAlchemy-репозиторій, підключення до PostgreSQL, конфігурація.
 - **presentation** — вхідна точка: FastAPI-роутери, Pydantic-схеми запитів/відповідей, DI-контейнер, що збирає use case з конкретною реалізацією репозиторію.
 
