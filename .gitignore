@@ -26,6 +26,7 @@ htmlcov/
 .mypy_cache/
 .pyright/
 .ruff_cache/
+.import_linter_cache
 
 # uv
 .uv/
