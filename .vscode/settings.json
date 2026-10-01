@@ -1,4 +1,9 @@
 {
     "chat.plugins.enabled": true,
-    "chat.useHooks": true
+    "chat.useHooks": true,
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
