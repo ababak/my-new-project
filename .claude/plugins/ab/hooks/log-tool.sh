@@ -15,7 +15,7 @@ TOOL_NAME="${TOOL_NAME:-n/a}"
 
 {
   printf -- '-%.0s' $(seq 1 80); echo
-  echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) [$HOOK_TYPE] [$TOOL_NAME]"
+  echo "$(date +%Y-%m-%dT%H:%M:%S%z) [$HOOK_TYPE] [$TOOL_NAME]"
   echo "$INPUT"
   # echo "env:"
   # # Values of secret-looking variables are masked so the log never holds credentials

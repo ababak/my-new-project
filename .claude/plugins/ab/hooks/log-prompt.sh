@@ -8,6 +8,6 @@ INPUT="$(cat)"
 # jq fails on non-JSON input; fall back to the raw input
 PROMPT="$(echo "$INPUT" | jq -r '.prompt // empty' 2>/dev/null)"
 
-echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) ${PROMPT:-$INPUT}" >> "$LOG_FILE"
+echo "$(date +%Y-%m-%dT%H:%M:%S%z) ${PROMPT:-$INPUT}" >> "$LOG_FILE"
 
 exit 0
