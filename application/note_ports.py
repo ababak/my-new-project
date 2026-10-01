@@ -1,0 +1,16 @@
+from typing import Protocol
+from uuid import UUID
+
+from domain.note import Note
+
+
+class NoteRepository(Protocol):
+    async def add(self, note: Note) -> None: ...
+
+    async def get(self, note_id: UUID) -> Note | None: ...
+
+    async def list_notes(self, *, q: str | None, limit: int, offset: int) -> list[Note]: ...
+
+    async def update(self, note: Note) -> None: ...
+
+    async def delete(self, note_id: UUID) -> bool: ...
