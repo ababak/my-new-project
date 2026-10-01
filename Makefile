@@ -4,9 +4,11 @@ dev:
 	docker compose up --build
 
 test:
+	docker compose up -d --wait db
 	uv run pytest
 
 migrate:
+	docker compose up -d --wait db
 	uv run alembic upgrade head
 
 lint:

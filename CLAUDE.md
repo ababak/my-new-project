@@ -1,7 +1,7 @@
 # CLAUDE.md — Task Management API
 
 ## Стек
-Python 3.12 · FastAPI · PostgreSQL · SQLAlchemy 2.0 (async) · Alembic · Docker · `uv` (пакети) · `pytest` (тести) · `ruff` (лінт/формат) · `pyright` (типізація) · `import-linter` (перевірка шарів)
+Python 3.14 (Docker/dev; `requires-python >=3.12`) · FastAPI · PostgreSQL · SQLAlchemy 2.0 (async) · Alembic · Docker · `uv` (пакети) · `pytest` (тести) · `ruff` (лінт/формат) · `pyright` (типізація) · `import-linter` (перевірка шарів)
 
 ## Архітектура: Clean Architecture
 
@@ -30,8 +30,8 @@ infrastructure ─┼──▶ application ──▶ domain
 ## Команди
 ```bash
 make dev       # підняти API + PostgreSQL через docker-compose
-make test      # запустити pytest
-make migrate   # застосувати alembic-міграції
+make test      # підняти PostgreSQL (docker) і запустити pytest
+make migrate   # підняти PostgreSQL і застосувати alembic-міграції
 make lint     # ruff check + pyright + import-linter (шари)
 make format    # ruff format
 ```
