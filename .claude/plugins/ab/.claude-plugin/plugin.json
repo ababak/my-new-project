@@ -1,0 +1,9 @@
+{
+  "name": "ab",
+  "description": "My demo-plugin",
+  "version": "0.1.0",
+  "author": {
+    "name": "Andriy Babak",
+    "email": "ababak@gmail.com"
+  }
+}

@@ -35,8 +35,8 @@ uv.lock.bak
 *.sqlite3
 
 # IDE
-.vscode/
-.idea/
+# .vscode/
+# .idea/
 *.swp
 
 # OS
