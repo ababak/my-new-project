@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../my-new-plugin"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"chat.plugins.enabled": true,
+		"chat.useHooks": true,
+		"makefile.configureOnOpen": false
+	}
+}
