@@ -1,6 +1,6 @@
 from application.dto import UNSET, UpdateTaskInput
 from application.ports import TaskRepository
-from domain.exceptions import TaskNotFoundError
+from application.use_cases._lookup import get_task_or_raise
 from domain.task import Task
 
 
@@ -9,9 +9,7 @@ class UpdateTask:
         self._repo = repo
 
     async def execute(self, data: UpdateTaskInput) -> Task:
-        task = await self._repo.get(data.task_id)
-        if task is None:
-            raise TaskNotFoundError(data.task_id)
+        task = await get_task_or_raise(self._repo, data.task_id)
         if data.title is not UNSET:
             task.change_title(data.title)
         if data.description is not UNSET:

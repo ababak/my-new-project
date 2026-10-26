@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 from uuid import UUID, uuid4
@@ -28,7 +28,7 @@ class Task:
     description: str | None
     status: TaskStatus
     created_at: datetime
-    updated_at: datetime = field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime
 
     @classmethod
     def create(cls, title: str, description: str | None = None) -> "Task":

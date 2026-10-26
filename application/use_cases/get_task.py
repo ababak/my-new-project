@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from application.ports import TaskRepository
-from domain.exceptions import TaskNotFoundError
+from application.use_cases._lookup import get_task_or_raise
 from domain.task import Task
 
 
@@ -10,7 +10,4 @@ class GetTask:
         self._repo = repo
 
     async def execute(self, task_id: UUID) -> Task:
-        task = await self._repo.get(task_id)
-        if task is None:
-            raise TaskNotFoundError(task_id)
-        return task
+        return await get_task_or_raise(self._repo, task_id)
